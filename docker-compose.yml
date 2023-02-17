@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  frontend_service:
+    build: UserFrontend
+    ports:
+      - "3000:3000"
+
+  backend_service:
+    build: UsersBackend
+    ports:
+      - "8181:8181"
+    depends_on:
+      - database_oracle_service
+    
+  database_oracle_service:
+    image: oracleinanutshell/oracle-xe-11g
+    ports:
+      - 1521:1521
